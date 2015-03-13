@@ -18,24 +18,86 @@ import java.util.logging.Logger;
 public class FileNumberingFilterWriter extends FilterWriter {
 
   private static final Logger LOG = Logger.getLogger(FileNumberingFilterWriter.class.getName());
+  private static int compteur = 1;
 
   public FileNumberingFilterWriter(Writer out) {
     super(out);
   }
 
+   
+  
   @Override
   public void write(String str, int off, int len) throws IOException {
-    throw new UnsupportedOperationException("The student has not implemented this method yet.");
+      
+     String resultat = compteur + "\t";
+      for (int i = 0; i < str.length(); i++){
+          if(str.charAt(i) == '\n'){   
+              resultat = resultat + "\n" + ++compteur + "\t";
+              //compteur++;
+          }
+          else
+              resultat = resultat + str.charAt(i);
+          
+      }
+      
+
+      super.write(resultat, off+2, len);
+    //throw new UnsupportedOperationException("The student has not implemented this method yet.");
+  }
+  
+  
+  @Override
+   public void write(String str) throws IOException {
+      
+      String resultat = compteur + "\t";
+      for (int i = 0; i < str.length(); i++){
+          if(str.charAt(i) == '\n'){   
+              resultat = resultat + "\n";// + ++compteur + "\t";
+              ++compteur;
+          }
+          else
+              resultat = resultat + str.charAt(i);
+          
+      }
+      
+      super.write(resultat);
+     
+    //throw new UnsupportedOperationException("The student has not implemented this method yet.");
   }
 
   @Override
   public void write(char[] cbuf, int off, int len) throws IOException {
-    throw new UnsupportedOperationException("The student has not implemented this method yet.");
+      String str = new String (cbuf);
+      String resultat = compteur + "\t";
+      for (int i = 0; i < str.length(); i++){
+          if(str.charAt(i) == '\n'){   
+              resultat = resultat + "\n";// + ++compteur + "\t";
+              compteur++;
+          }
+          else
+              resultat = resultat + str.charAt(i);
+          
+      }
+      super.write(resultat, off+2, len);
+    //throw new UnsupportedOperationException("The student has not implemented this method yet.");
   }
 
   @Override
+  
   public void write(int c) throws IOException {
-    throw new UnsupportedOperationException("The student has not implemented this method yet.");
-  }
+     
+      String resultat = compteur + "\t";
+      
+          if((char)c == '\n'){   
+              resultat = resultat + "\n" ;//+ ++compteur + "\t";
+              compteur++;
+          }
+          else
+              resultat = resultat + (char)c;
+          super.write(resultat);
+          
+      //throw new UnsupportedOperationException("The student has not implemented this method yet.");
+      }
+  
 
 }
