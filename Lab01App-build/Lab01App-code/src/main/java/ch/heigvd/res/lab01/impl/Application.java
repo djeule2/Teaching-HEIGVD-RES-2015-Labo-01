@@ -147,13 +147,11 @@ public class Application implements IApplication {
     path += filename;
     File file1 = new File(path);
     // créer le fichier, écrire le contenu de quote avec getQuote
-    
-      BufferedWriter writer = new BufferedWriter(new FileWriter(file1));
+      try (BufferedWriter writer = new BufferedWriter(new FileWriter(file1))) {
           writer.write(quote.getQuote());
-         
-          writer.flush();
           
-          writer.close();
+          writer.flush();
+      }
           
     
      
