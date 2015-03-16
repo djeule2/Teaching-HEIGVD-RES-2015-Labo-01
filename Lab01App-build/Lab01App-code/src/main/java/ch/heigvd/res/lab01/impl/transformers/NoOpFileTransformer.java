@@ -13,6 +13,8 @@ public class NoOpFileTransformer extends FileTransformer {
 
   @Override
   public Writer decorateWithFilters(Writer writer) {
+      
+      
     //throw new UnsupportedOperationException("The student has not implemented this method yet.");
     /*
      * The NoOpFileTransformer does not apply any transformation of the character stream
@@ -20,6 +22,7 @@ public class NoOpFileTransformer extends FileTransformer {
      * the output file at all. Just uncomment the following line and get rid of the UnsupportedOperationException and
      * you will be all set.
      */
+     
     return writer;
   }
 
