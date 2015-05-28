@@ -133,9 +133,9 @@ public class Application implements IApplication {
   void storeQuote(Quote quote, String filename) throws IOException {
     //throw new UnsupportedOperationException("The student has not implemented this method yet.");
     // construire path
-    String path  = WORKSPACE_DIRECTORY + "/";
+    String path  = WORKSPACE_DIRECTORY + File.separator;
     for (String tag: quote.getTags())
-        path += tag + "/"; 
+        path += tag + File.separator; 
     
     // ajoute nom fichier au path
     
@@ -151,6 +151,7 @@ public class Application implements IApplication {
           writer.write(quote.getQuote());
           
           writer.flush();
+          writer.close();
       }
           
     
@@ -168,7 +169,7 @@ public class Application implements IApplication {
       public void visit(File file) {
           try {
               writer.write(file.getPath()+"\n");
-              
+              /*
               if(file.listFiles() == null)
                   return;
              File[]tab = file.listFiles();
@@ -176,7 +177,7 @@ public class Application implements IApplication {
                   if (s.isFile())
                       writer.write(s.getPath()+ "\n");
                     
-              
+              */
               
               
               
